@@ -15,9 +15,10 @@ class ros_controler_node(Node):
         self.req = InterpolateTrajectory.Request()
         
 
-    def send_get_trajectory_request(self, number):
-        self.req.a = number
-        self.req.b = number
+    def send_get_trajectory_request(self, speed, position, current_position):
+        self.req.speed = speed
+        self.req.position = position
+        self.req.current_position = current_position    #The Webserver has to check its value before it makes the request. (NOT IMPLEMENTED)
         self.future = self.cli.call_async(self.req)
         rclpy.spin_until_future_complete(self, self.future)
         return self.future.result()
@@ -39,6 +40,7 @@ class http_control_panel:
     def index_view(self):
         return "Hello world"
 
+    #DEPRECATED
     def number_view(self, number):
         int_number = int(number)
 
