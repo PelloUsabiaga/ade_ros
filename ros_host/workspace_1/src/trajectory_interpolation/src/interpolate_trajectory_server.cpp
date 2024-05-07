@@ -5,13 +5,37 @@
 #include <memory>
 
 int rc;
+static int rate = 200; /*rate in miliseconds*/
+struct point{
+		int pos;
+		int t;
+	};
+	
+struct point points[];
 
-int calculate(int speed, int position, int current_position, int points[])
+int calculate(int speed, int position, int current_position)
 {
+	int x0 = 0;
+	int local_t = 0;
 	float x1;
 	float b;
-	x1 = ((float) (position - current_position)) / speed;
-	b = pow((((float) position )/ current_position), (1 / -x1))
+	float a;
+
+	int steps = 10;
+	/*Inverse exponential curve trajectory*/
+	x1 = x0 + ((float) (position - current_position)) / speed;
+	b = pow((((float) position )/ current_position), (1 / -x1));
+	a = (float) position*pow(b,x0);					/*If x0=0 is assumed a=position*/
+
+	int i;
+	for(i=0; i < steps; i++)
+	{
+
+		points[i] -> pos = a*pow(b, -local_t);
+		points[i] -> t = local_t;
+		local_t += rate;
+	}
+	return 0;
 }
 
 void send_response(const std::shared_ptr<custom_interfaces::srv::InterpolateTrajectory::Request> request, std::shared_ptr<custom_interfaces::srv::InterpolateTrajectory::Response> response)
