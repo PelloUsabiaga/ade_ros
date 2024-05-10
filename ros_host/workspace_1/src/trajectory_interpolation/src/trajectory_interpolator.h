@@ -2,6 +2,7 @@
 #define trajectory_interpolator_file
 
 #include <math.h>
+#include <vector>
 
 class trajectory_interpolator
 {
@@ -16,7 +17,7 @@ public:
     trajectory_interpolator(interpolation_type _interpolation_type);
     trajectory_interpolator();
 
-    std::pair<float, float> interpolate_trajectory(double current_position, double target_position, double mean_speed, int points);
+    std::pair<std::vector<double>, std::vector<double>> interpolate_trajectory(double current_position, double target_position, double mean_speed, int points);
 
 };
 
