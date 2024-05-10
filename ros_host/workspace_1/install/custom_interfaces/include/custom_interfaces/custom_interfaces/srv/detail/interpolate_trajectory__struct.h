@@ -20,8 +20,10 @@ extern "C"
 /// Struct defined in srv/InterpolateTrajectory in the package custom_interfaces.
 typedef struct custom_interfaces__srv__InterpolateTrajectory_Request
 {
-  int64_t a;
-  int64_t b;
+  double current_position;
+  double target_position;
+  double mean_speed;
+  int64_t points;
 } custom_interfaces__srv__InterpolateTrajectory_Request;
 
 // Struct for a sequence of custom_interfaces__srv__InterpolateTrajectory_Request.
@@ -37,10 +39,16 @@ typedef struct custom_interfaces__srv__InterpolateTrajectory_Request__Sequence
 
 // Constants defined in the message
 
+// Include directives for member types
+// Member 'positions'
+// Member 'times'
+#include "rosidl_runtime_c/primitives_sequence.h"
+
 /// Struct defined in srv/InterpolateTrajectory in the package custom_interfaces.
 typedef struct custom_interfaces__srv__InterpolateTrajectory_Response
 {
-  int64_t sum;
+  rosidl_runtime_c__double__Sequence positions;
+  rosidl_runtime_c__double__Sequence times;
 } custom_interfaces__srv__InterpolateTrajectory_Response;
 
 // Struct for a sequence of custom_interfaces__srv__InterpolateTrajectory_Response.

@@ -1,2 +1,4 @@
-int64 a
-int64 b
+float64 current_position
+float64 target_position
+float64 mean_speed
+int64 points

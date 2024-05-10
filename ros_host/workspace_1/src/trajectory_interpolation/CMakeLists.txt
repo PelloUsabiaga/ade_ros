@@ -10,7 +10,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(custom_interfaces REQUIRED)
 
-add_executable(trajectory_interpolation_server src/interpolate_trajectory_server.cpp)
+add_executable(trajectory_interpolation_server src/main.cpp src/interpolate_trajectory_server.cpp src/interpolate_trajectory_server.h src/trajectory_interpolator.cpp src/trajectory_interpolator.h)
 ament_target_dependencies(trajectory_interpolation_server rclcpp custom_interfaces)
 
 if(BUILD_TESTING)

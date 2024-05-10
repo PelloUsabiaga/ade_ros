@@ -37,16 +37,16 @@ void InterpolateTrajectory_Request_fini_function(void * message_memory)
   typed_message->~InterpolateTrajectory_Request();
 }
 
-static const ::rosidl_typesupport_introspection_cpp::MessageMember InterpolateTrajectory_Request_message_member_array[2] = {
+static const ::rosidl_typesupport_introspection_cpp::MessageMember InterpolateTrajectory_Request_message_member_array[4] = {
   {
-    "a",  // name
-    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT64,  // type
+    "current_position",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
     false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(custom_interfaces::srv::InterpolateTrajectory_Request, a),  // bytes offset in struct
+    offsetof(custom_interfaces::srv::InterpolateTrajectory_Request, current_position),  // bytes offset in struct
     nullptr,  // default value
     nullptr,  // size() function pointer
     nullptr,  // get_const(index) function pointer
@@ -56,14 +56,48 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember InterpolateTr
     nullptr  // resize(index) function pointer
   },
   {
-    "b",  // name
+    "target_position",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(custom_interfaces::srv::InterpolateTrajectory_Request, target_position),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr,  // fetch(index, &value) function pointer
+    nullptr,  // assign(index, value) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
+    "mean_speed",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(custom_interfaces::srv::InterpolateTrajectory_Request, mean_speed),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr,  // fetch(index, &value) function pointer
+    nullptr,  // assign(index, value) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
+    "points",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT64,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
     false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(custom_interfaces::srv::InterpolateTrajectory_Request, b),  // bytes offset in struct
+    offsetof(custom_interfaces::srv::InterpolateTrajectory_Request, points),  // bytes offset in struct
     nullptr,  // default value
     nullptr,  // size() function pointer
     nullptr,  // get_const(index) function pointer
@@ -77,7 +111,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember InterpolateTr
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers InterpolateTrajectory_Request_message_members = {
   "custom_interfaces::srv",  // message namespace
   "InterpolateTrajectory_Request",  // message name
-  2,  // number of fields
+  4,  // number of fields
   sizeof(custom_interfaces::srv::InterpolateTrajectory_Request),
   InterpolateTrajectory_Request_message_member_array,  // message members
   InterpolateTrajectory_Request_init_function,  // function to initialize message memory (memory has to be allocated)
@@ -173,30 +207,137 @@ void InterpolateTrajectory_Response_fini_function(void * message_memory)
   typed_message->~InterpolateTrajectory_Response();
 }
 
-static const ::rosidl_typesupport_introspection_cpp::MessageMember InterpolateTrajectory_Response_message_member_array[1] = {
+size_t size_function__InterpolateTrajectory_Response__positions(const void * untyped_member)
+{
+  const auto * member = reinterpret_cast<const std::vector<double> *>(untyped_member);
+  return member->size();
+}
+
+const void * get_const_function__InterpolateTrajectory_Response__positions(const void * untyped_member, size_t index)
+{
+  const auto & member =
+    *reinterpret_cast<const std::vector<double> *>(untyped_member);
+  return &member[index];
+}
+
+void * get_function__InterpolateTrajectory_Response__positions(void * untyped_member, size_t index)
+{
+  auto & member =
+    *reinterpret_cast<std::vector<double> *>(untyped_member);
+  return &member[index];
+}
+
+void fetch_function__InterpolateTrajectory_Response__positions(
+  const void * untyped_member, size_t index, void * untyped_value)
+{
+  const auto & item = *reinterpret_cast<const double *>(
+    get_const_function__InterpolateTrajectory_Response__positions(untyped_member, index));
+  auto & value = *reinterpret_cast<double *>(untyped_value);
+  value = item;
+}
+
+void assign_function__InterpolateTrajectory_Response__positions(
+  void * untyped_member, size_t index, const void * untyped_value)
+{
+  auto & item = *reinterpret_cast<double *>(
+    get_function__InterpolateTrajectory_Response__positions(untyped_member, index));
+  const auto & value = *reinterpret_cast<const double *>(untyped_value);
+  item = value;
+}
+
+void resize_function__InterpolateTrajectory_Response__positions(void * untyped_member, size_t size)
+{
+  auto * member =
+    reinterpret_cast<std::vector<double> *>(untyped_member);
+  member->resize(size);
+}
+
+size_t size_function__InterpolateTrajectory_Response__times(const void * untyped_member)
+{
+  const auto * member = reinterpret_cast<const std::vector<double> *>(untyped_member);
+  return member->size();
+}
+
+const void * get_const_function__InterpolateTrajectory_Response__times(const void * untyped_member, size_t index)
+{
+  const auto & member =
+    *reinterpret_cast<const std::vector<double> *>(untyped_member);
+  return &member[index];
+}
+
+void * get_function__InterpolateTrajectory_Response__times(void * untyped_member, size_t index)
+{
+  auto & member =
+    *reinterpret_cast<std::vector<double> *>(untyped_member);
+  return &member[index];
+}
+
+void fetch_function__InterpolateTrajectory_Response__times(
+  const void * untyped_member, size_t index, void * untyped_value)
+{
+  const auto & item = *reinterpret_cast<const double *>(
+    get_const_function__InterpolateTrajectory_Response__times(untyped_member, index));
+  auto & value = *reinterpret_cast<double *>(untyped_value);
+  value = item;
+}
+
+void assign_function__InterpolateTrajectory_Response__times(
+  void * untyped_member, size_t index, const void * untyped_value)
+{
+  auto & item = *reinterpret_cast<double *>(
+    get_function__InterpolateTrajectory_Response__times(untyped_member, index));
+  const auto & value = *reinterpret_cast<const double *>(untyped_value);
+  item = value;
+}
+
+void resize_function__InterpolateTrajectory_Response__times(void * untyped_member, size_t size)
+{
+  auto * member =
+    reinterpret_cast<std::vector<double> *>(untyped_member);
+  member->resize(size);
+}
+
+static const ::rosidl_typesupport_introspection_cpp::MessageMember InterpolateTrajectory_Response_message_member_array[2] = {
   {
-    "sum",  // name
-    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT64,  // type
+    "positions",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
-    false,  // is array
+    true,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(custom_interfaces::srv::InterpolateTrajectory_Response, sum),  // bytes offset in struct
+    offsetof(custom_interfaces::srv::InterpolateTrajectory_Response, positions),  // bytes offset in struct
     nullptr,  // default value
-    nullptr,  // size() function pointer
-    nullptr,  // get_const(index) function pointer
-    nullptr,  // get(index) function pointer
-    nullptr,  // fetch(index, &value) function pointer
-    nullptr,  // assign(index, value) function pointer
-    nullptr  // resize(index) function pointer
+    size_function__InterpolateTrajectory_Response__positions,  // size() function pointer
+    get_const_function__InterpolateTrajectory_Response__positions,  // get_const(index) function pointer
+    get_function__InterpolateTrajectory_Response__positions,  // get(index) function pointer
+    fetch_function__InterpolateTrajectory_Response__positions,  // fetch(index, &value) function pointer
+    assign_function__InterpolateTrajectory_Response__positions,  // assign(index, value) function pointer
+    resize_function__InterpolateTrajectory_Response__positions  // resize(index) function pointer
+  },
+  {
+    "times",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    true,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(custom_interfaces::srv::InterpolateTrajectory_Response, times),  // bytes offset in struct
+    nullptr,  // default value
+    size_function__InterpolateTrajectory_Response__times,  // size() function pointer
+    get_const_function__InterpolateTrajectory_Response__times,  // get_const(index) function pointer
+    get_function__InterpolateTrajectory_Response__times,  // get(index) function pointer
+    fetch_function__InterpolateTrajectory_Response__times,  // fetch(index, &value) function pointer
+    assign_function__InterpolateTrajectory_Response__times,  // assign(index, value) function pointer
+    resize_function__InterpolateTrajectory_Response__times  // resize(index) function pointer
   }
 };
 
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers InterpolateTrajectory_Response_message_members = {
   "custom_interfaces::srv",  // message namespace
   "InterpolateTrajectory_Response",  // message name
-  1,  // number of fields
+  2,  // number of fields
   sizeof(custom_interfaces::srv::InterpolateTrajectory_Response),
   InterpolateTrajectory_Response_message_member_array,  // message members
   InterpolateTrajectory_Response_init_function,  // function to initialize message memory (memory has to be allocated)

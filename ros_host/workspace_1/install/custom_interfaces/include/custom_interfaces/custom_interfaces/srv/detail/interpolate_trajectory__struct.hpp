@@ -38,8 +38,10 @@ struct InterpolateTrajectory_Request_
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
-      this->a = 0ll;
-      this->b = 0ll;
+      this->current_position = 0.0;
+      this->target_position = 0.0;
+      this->mean_speed = 0.0;
+      this->points = 0ll;
     }
   }
 
@@ -49,30 +51,50 @@ struct InterpolateTrajectory_Request_
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
-      this->a = 0ll;
-      this->b = 0ll;
+      this->current_position = 0.0;
+      this->target_position = 0.0;
+      this->mean_speed = 0.0;
+      this->points = 0ll;
     }
   }
 
   // field types and members
-  using _a_type =
+  using _current_position_type =
+    double;
+  _current_position_type current_position;
+  using _target_position_type =
+    double;
+  _target_position_type target_position;
+  using _mean_speed_type =
+    double;
+  _mean_speed_type mean_speed;
+  using _points_type =
     int64_t;
-  _a_type a;
-  using _b_type =
-    int64_t;
-  _b_type b;
+  _points_type points;
 
   // setters for named parameter idiom
-  Type & set__a(
-    const int64_t & _arg)
+  Type & set__current_position(
+    const double & _arg)
   {
-    this->a = _arg;
+    this->current_position = _arg;
     return *this;
   }
-  Type & set__b(
+  Type & set__target_position(
+    const double & _arg)
+  {
+    this->target_position = _arg;
+    return *this;
+  }
+  Type & set__mean_speed(
+    const double & _arg)
+  {
+    this->mean_speed = _arg;
+    return *this;
+  }
+  Type & set__points(
     const int64_t & _arg)
   {
-    this->b = _arg;
+    this->points = _arg;
     return *this;
   }
 
@@ -118,10 +140,16 @@ struct InterpolateTrajectory_Request_
   // comparison operators
   bool operator==(const InterpolateTrajectory_Request_ & other) const
   {
-    if (this->a != other.a) {
+    if (this->current_position != other.current_position) {
       return false;
     }
-    if (this->b != other.b) {
+    if (this->target_position != other.target_position) {
+      return false;
+    }
+    if (this->mean_speed != other.mean_speed) {
+      return false;
+    }
+    if (this->points != other.points) {
       return false;
     }
     return true;
@@ -163,33 +191,34 @@ struct InterpolateTrajectory_Response_
 
   explicit InterpolateTrajectory_Response_(rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
   {
-    if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
-      rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
-    {
-      this->sum = 0ll;
-    }
+    (void)_init;
   }
 
   explicit InterpolateTrajectory_Response_(const ContainerAllocator & _alloc, rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
   {
+    (void)_init;
     (void)_alloc;
-    if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
-      rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
-    {
-      this->sum = 0ll;
-    }
   }
 
   // field types and members
-  using _sum_type =
-    int64_t;
-  _sum_type sum;
+  using _positions_type =
+    std::vector<double, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<double>>;
+  _positions_type positions;
+  using _times_type =
+    std::vector<double, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<double>>;
+  _times_type times;
 
   // setters for named parameter idiom
-  Type & set__sum(
-    const int64_t & _arg)
+  Type & set__positions(
+    const std::vector<double, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<double>> & _arg)
   {
-    this->sum = _arg;
+    this->positions = _arg;
+    return *this;
+  }
+  Type & set__times(
+    const std::vector<double, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<double>> & _arg)
+  {
+    this->times = _arg;
     return *this;
   }
 
@@ -235,7 +264,10 @@ struct InterpolateTrajectory_Response_
   // comparison operators
   bool operator==(const InterpolateTrajectory_Response_ & other) const
   {
-    if (this->sum != other.sum) {
+    if (this->positions != other.positions) {
+      return false;
+    }
+    if (this->times != other.times) {
       return false;
     }
     return true;

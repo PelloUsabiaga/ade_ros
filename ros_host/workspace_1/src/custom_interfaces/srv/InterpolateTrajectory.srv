@@ -1,5 +1,7 @@
-int64 position
-int64 speed
-int64 current_position
+float64 current_position
+float64 target_position
+float64 mean_speed
+int64 points
 ---
-int64 status
+float64[] positions
+float64[] times

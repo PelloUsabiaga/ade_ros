@@ -16,8 +16,10 @@ custom_interfaces__srv__InterpolateTrajectory_Request__init(custom_interfaces__s
   if (!msg) {
     return false;
   }
-  // a
-  // b
+  // current_position
+  // target_position
+  // mean_speed
+  // points
   return true;
 }
 
@@ -27,8 +29,10 @@ custom_interfaces__srv__InterpolateTrajectory_Request__fini(custom_interfaces__s
   if (!msg) {
     return;
   }
-  // a
-  // b
+  // current_position
+  // target_position
+  // mean_speed
+  // points
 }
 
 bool
@@ -37,12 +41,20 @@ custom_interfaces__srv__InterpolateTrajectory_Request__are_equal(const custom_in
   if (!lhs || !rhs) {
     return false;
   }
-  // a
-  if (lhs->a != rhs->a) {
+  // current_position
+  if (lhs->current_position != rhs->current_position) {
     return false;
   }
-  // b
-  if (lhs->b != rhs->b) {
+  // target_position
+  if (lhs->target_position != rhs->target_position) {
+    return false;
+  }
+  // mean_speed
+  if (lhs->mean_speed != rhs->mean_speed) {
+    return false;
+  }
+  // points
+  if (lhs->points != rhs->points) {
     return false;
   }
   return true;
@@ -56,10 +68,14 @@ custom_interfaces__srv__InterpolateTrajectory_Request__copy(
   if (!input || !output) {
     return false;
   }
-  // a
-  output->a = input->a;
-  // b
-  output->b = input->b;
+  // current_position
+  output->current_position = input->current_position;
+  // target_position
+  output->target_position = input->target_position;
+  // mean_speed
+  output->mean_speed = input->mean_speed;
+  // points
+  output->points = input->points;
   return true;
 }
 
@@ -243,13 +259,27 @@ custom_interfaces__srv__InterpolateTrajectory_Request__Sequence__copy(
 }
 
 
+// Include directives for member types
+// Member `positions`
+// Member `times`
+#include "rosidl_runtime_c/primitives_sequence_functions.h"
+
 bool
 custom_interfaces__srv__InterpolateTrajectory_Response__init(custom_interfaces__srv__InterpolateTrajectory_Response * msg)
 {
   if (!msg) {
     return false;
   }
-  // sum
+  // positions
+  if (!rosidl_runtime_c__double__Sequence__init(&msg->positions, 0)) {
+    custom_interfaces__srv__InterpolateTrajectory_Response__fini(msg);
+    return false;
+  }
+  // times
+  if (!rosidl_runtime_c__double__Sequence__init(&msg->times, 0)) {
+    custom_interfaces__srv__InterpolateTrajectory_Response__fini(msg);
+    return false;
+  }
   return true;
 }
 
@@ -259,7 +289,10 @@ custom_interfaces__srv__InterpolateTrajectory_Response__fini(custom_interfaces__
   if (!msg) {
     return;
   }
-  // sum
+  // positions
+  rosidl_runtime_c__double__Sequence__fini(&msg->positions);
+  // times
+  rosidl_runtime_c__double__Sequence__fini(&msg->times);
 }
 
 bool
@@ -268,8 +301,16 @@ custom_interfaces__srv__InterpolateTrajectory_Response__are_equal(const custom_i
   if (!lhs || !rhs) {
     return false;
   }
-  // sum
-  if (lhs->sum != rhs->sum) {
+  // positions
+  if (!rosidl_runtime_c__double__Sequence__are_equal(
+      &(lhs->positions), &(rhs->positions)))
+  {
+    return false;
+  }
+  // times
+  if (!rosidl_runtime_c__double__Sequence__are_equal(
+      &(lhs->times), &(rhs->times)))
+  {
     return false;
   }
   return true;
@@ -283,8 +324,18 @@ custom_interfaces__srv__InterpolateTrajectory_Response__copy(
   if (!input || !output) {
     return false;
   }
-  // sum
-  output->sum = input->sum;
+  // positions
+  if (!rosidl_runtime_c__double__Sequence__copy(
+      &(input->positions), &(output->positions)))
+  {
+    return false;
+  }
+  // times
+  if (!rosidl_runtime_c__double__Sequence__copy(
+      &(input->times), &(output->times)))
+  {
+    return false;
+  }
   return true;
 }
 

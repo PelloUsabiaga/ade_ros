@@ -1,63 +1,39 @@
 #include "rclcpp/rclcpp.hpp"
-#include "custom_interfaces/srv/interpolate_trajectory.hpp"
 
 #include <math.h>
 #include <memory>
 
-#define steps 10
+#include "interpolate_trajectory_server.h"
 
-int rc;
-static int rate = 200; /*rate in miliseconds*/
-struct point{
-		int pos;
-		int t;
-	};
 
-struct point points[steps];
-
-int calculate(int speed, int position, int current_position)
+void handle_request(const std::shared_ptr<custom_interfaces::srv::InterpolateTrajectory::Request> request, std::shared_ptr<custom_interfaces::srv::InterpolateTrajectory::Response> response)
 {
-	int x0 = 0;
-	int local_t = 0;
-	float x1;
-	float b;
-	float a;
-	/*Inverse exponential curve trajectory*/
-	x1 = x0 + ((float) (position - current_position)) / speed;
-	b = pow((((float) position )/ current_position), (1 / -x1));
-	a = (float) position*pow(b,x0);					/*If x0=0 is assumed a=position*/
-
-	int i;
-	for(i=0; i < steps; i++)
-	{
-
-		points[i].pos = a*pow(b, -local_t);
-		points[i].t = local_t;
-		local_t += rate;
-	}
-	return 0;
+	// RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Icoming request\nSpeed: %ld" "Position: %ld" "Current position: %ld", request->speed, request->position, request->current_position);
+	// rc = calculate(request->speed, request->position, request->current_position);
+	std::cout << request->points;
+	std::cout << request->mean_speed;
+	// response->status = rc;	/*STATUS -> 0 = OK | ELSE error*/
+	// RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Sending response: [%ld]", (long int)response->status);
 }
 
-void send_response(const std::shared_ptr<custom_interfaces::srv::InterpolateTrajectory::Request> request, std::shared_ptr<custom_interfaces::srv::InterpolateTrajectory::Response> response)
+interpolate_trajectory_server::interpolate_trajectory_server(int argc, char **argv)
 {
-	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Icoming request\nSpeed: %ld" "Position: %ld" "Current position: %ld", request->speed, request->position, request->current_position);
-	rc = calculate(request->speed, request->position, request->current_position);
+	trajectory_interpolator::interpolation_type _interoplation_type = trajectory_interpolator::interpolation_type::linear;
+	this->_trajectory_interpolator = new trajectory_interpolator(_interoplation_type);
 
-	response->status = rc;	/*STATUS -> 0 = OK | ELSE error*/
-	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Sending response: [%ld]", (long int)response->status);
-}
-
-
-int main(int argc, char **argv)
-{
+	
 	rclcpp::init(argc, argv);
-
 	std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("interpolate_trajectory_server");
 
-	rclcpp::Service<custom_interfaces::srv::InterpolateTrajectory>::SharedPtr service = node->create_service<custom_interfaces::srv::InterpolateTrajectory>("interpolate_trajectory", &send_response);
+	rclcpp::Service<custom_interfaces::srv::InterpolateTrajectory>::SharedPtr service = node->create_service<custom_interfaces::srv::InterpolateTrajectory>("interpolate_trajectory", &handle_request);
 
 	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to interpolate trajectories");
 
 	rclcpp::spin(node);
 	rclcpp::shutdown();
 }
+
+void interpolate_trajectory_server::dummy(){
+	std::cout << "kaixo lagun";
+}
+

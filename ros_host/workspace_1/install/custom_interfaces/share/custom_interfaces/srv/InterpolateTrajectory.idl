@@ -6,12 +6,18 @@
 module custom_interfaces {
   module srv {
     struct InterpolateTrajectory_Request {
-      int64 a;
+      double current_position;
 
-      int64 b;
+      double target_position;
+
+      double mean_speed;
+
+      int64 points;
     };
     struct InterpolateTrajectory_Response {
-      int64 sum;
+      sequence<double> positions;
+
+      sequence<double> times;
     };
   };
 };
