@@ -1,0 +1,4 @@
+srv/InterpolateTrajectory.idl
+srv/InterpolateTrajectory.srv
+srv/InterpolateTrajectory_Request.msg
+srv/InterpolateTrajectory_Response.msg
