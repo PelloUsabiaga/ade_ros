@@ -13,6 +13,8 @@ module custom_interfaces {
       double mean_speed;
 
       int64 points;
+
+      string interpolation_type;
     };
     struct InterpolateTrajectory_Response {
       sequence<double> positions;

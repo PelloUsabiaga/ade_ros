@@ -10,6 +10,10 @@
 
 #include "rcutils/allocator.h"
 
+// Include directives for member types
+// Member `interpolation_type`
+#include "rosidl_runtime_c/string_functions.h"
+
 bool
 custom_interfaces__srv__InterpolateTrajectory_Request__init(custom_interfaces__srv__InterpolateTrajectory_Request * msg)
 {
@@ -20,6 +24,11 @@ custom_interfaces__srv__InterpolateTrajectory_Request__init(custom_interfaces__s
   // target_position
   // mean_speed
   // points
+  // interpolation_type
+  if (!rosidl_runtime_c__String__init(&msg->interpolation_type)) {
+    custom_interfaces__srv__InterpolateTrajectory_Request__fini(msg);
+    return false;
+  }
   return true;
 }
 
@@ -33,6 +42,8 @@ custom_interfaces__srv__InterpolateTrajectory_Request__fini(custom_interfaces__s
   // target_position
   // mean_speed
   // points
+  // interpolation_type
+  rosidl_runtime_c__String__fini(&msg->interpolation_type);
 }
 
 bool
@@ -57,6 +68,12 @@ custom_interfaces__srv__InterpolateTrajectory_Request__are_equal(const custom_in
   if (lhs->points != rhs->points) {
     return false;
   }
+  // interpolation_type
+  if (!rosidl_runtime_c__String__are_equal(
+      &(lhs->interpolation_type), &(rhs->interpolation_type)))
+  {
+    return false;
+  }
   return true;
 }
 
@@ -76,6 +93,12 @@ custom_interfaces__srv__InterpolateTrajectory_Request__copy(
   output->mean_speed = input->mean_speed;
   // points
   output->points = input->points;
+  // interpolation_type
+  if (!rosidl_runtime_c__String__copy(
+      &(input->interpolation_type), &(output->interpolation_type)))
+  {
+    return false;
+  }
   return true;
 }
 

@@ -50,6 +50,13 @@ inline void to_flow_style_yaml(
   {
     out << "points: ";
     rosidl_generator_traits::value_to_yaml(msg.points, out);
+    out << ", ";
+  }
+
+  // member: interpolation_type
+  {
+    out << "interpolation_type: ";
+    rosidl_generator_traits::value_to_yaml(msg.interpolation_type, out);
   }
   out << "}";
 }  // NOLINT(readability/fn_size)
@@ -95,6 +102,16 @@ inline void to_block_style_yaml(
     }
     out << "points: ";
     rosidl_generator_traits::value_to_yaml(msg.points, out);
+    out << "\n";
+  }
+
+  // member: interpolation_type
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "interpolation_type: ";
+    rosidl_generator_traits::value_to_yaml(msg.interpolation_type, out);
     out << "\n";
   }
 }  // NOLINT(readability/fn_size)
@@ -145,11 +162,11 @@ inline const char * name<custom_interfaces::srv::InterpolateTrajectory_Request>(
 
 template<>
 struct has_fixed_size<custom_interfaces::srv::InterpolateTrajectory_Request>
-  : std::integral_constant<bool, true> {};
+  : std::integral_constant<bool, false> {};
 
 template<>
 struct has_bounded_size<custom_interfaces::srv::InterpolateTrajectory_Request>
-  : std::integral_constant<bool, true> {};
+  : std::integral_constant<bool, false> {};
 
 template<>
 struct is_message<custom_interfaces::srv::InterpolateTrajectory_Request>

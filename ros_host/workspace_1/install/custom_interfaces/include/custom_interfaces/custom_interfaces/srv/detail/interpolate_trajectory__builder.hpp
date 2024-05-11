@@ -21,16 +21,32 @@ namespace srv
 namespace builder
 {
 
+class Init_InterpolateTrajectory_Request_interpolation_type
+{
+public:
+  explicit Init_InterpolateTrajectory_Request_interpolation_type(::custom_interfaces::srv::InterpolateTrajectory_Request & msg)
+  : msg_(msg)
+  {}
+  ::custom_interfaces::srv::InterpolateTrajectory_Request interpolation_type(::custom_interfaces::srv::InterpolateTrajectory_Request::_interpolation_type_type arg)
+  {
+    msg_.interpolation_type = std::move(arg);
+    return std::move(msg_);
+  }
+
+private:
+  ::custom_interfaces::srv::InterpolateTrajectory_Request msg_;
+};
+
 class Init_InterpolateTrajectory_Request_points
 {
 public:
   explicit Init_InterpolateTrajectory_Request_points(::custom_interfaces::srv::InterpolateTrajectory_Request & msg)
   : msg_(msg)
   {}
-  ::custom_interfaces::srv::InterpolateTrajectory_Request points(::custom_interfaces::srv::InterpolateTrajectory_Request::_points_type arg)
+  Init_InterpolateTrajectory_Request_interpolation_type points(::custom_interfaces::srv::InterpolateTrajectory_Request::_points_type arg)
   {
     msg_.points = std::move(arg);
-    return std::move(msg_);
+    return Init_InterpolateTrajectory_Request_interpolation_type(msg_);
   }
 
 private:

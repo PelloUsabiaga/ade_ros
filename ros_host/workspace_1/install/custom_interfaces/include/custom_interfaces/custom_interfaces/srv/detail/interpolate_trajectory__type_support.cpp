@@ -37,7 +37,7 @@ void InterpolateTrajectory_Request_fini_function(void * message_memory)
   typed_message->~InterpolateTrajectory_Request();
 }
 
-static const ::rosidl_typesupport_introspection_cpp::MessageMember InterpolateTrajectory_Request_message_member_array[4] = {
+static const ::rosidl_typesupport_introspection_cpp::MessageMember InterpolateTrajectory_Request_message_member_array[5] = {
   {
     "current_position",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE,  // type
@@ -105,13 +105,30 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember InterpolateTr
     nullptr,  // fetch(index, &value) function pointer
     nullptr,  // assign(index, value) function pointer
     nullptr  // resize(index) function pointer
+  },
+  {
+    "interpolation_type",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(custom_interfaces::srv::InterpolateTrajectory_Request, interpolation_type),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr,  // fetch(index, &value) function pointer
+    nullptr,  // assign(index, value) function pointer
+    nullptr  // resize(index) function pointer
   }
 };
 
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers InterpolateTrajectory_Request_message_members = {
   "custom_interfaces::srv",  // message namespace
   "InterpolateTrajectory_Request",  // message name
-  4,  // number of fields
+  5,  // number of fields
   sizeof(custom_interfaces::srv::InterpolateTrajectory_Request),
   InterpolateTrajectory_Request_message_member_array,  // message members
   InterpolateTrajectory_Request_init_function,  // function to initialize message memory (memory has to be allocated)

@@ -17,6 +17,10 @@ extern "C"
 
 // Constants defined in the message
 
+// Include directives for member types
+// Member 'interpolation_type'
+#include "rosidl_runtime_c/string.h"
+
 /// Struct defined in srv/InterpolateTrajectory in the package custom_interfaces.
 typedef struct custom_interfaces__srv__InterpolateTrajectory_Request
 {
@@ -24,6 +28,7 @@ typedef struct custom_interfaces__srv__InterpolateTrajectory_Request
   double target_position;
   double mean_speed;
   int64_t points;
+  rosidl_runtime_c__String interpolation_type;
 } custom_interfaces__srv__InterpolateTrajectory_Request;
 
 // Struct for a sequence of custom_interfaces__srv__InterpolateTrajectory_Request.

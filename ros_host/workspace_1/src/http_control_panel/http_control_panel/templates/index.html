@@ -7,15 +7,28 @@
 <body>
     <div>
         <label>Current position: {{current_position}}</label>
+        <br>
         <label>Target position: {{target_position}}</label>
+        <br>
+        <label>Trajectory points: {{trajectory_points}}</label>
+        <br>
+        <label>Trajectory times: {{trajectory_times}}</label>
+        <br>
     </div>
     <div class="content">
         <form method="post">
-            <label for="title">Title</label>
+            <label for="mean_speed">Mean speed</label>
             <br>
-            <input type="text" name="title"
+            <input type="text" name="mean_speed"
                    placeholder="Message title"
-                   value="{{ request.form['title'] }}"></input>
+                   value="{{ request.form['mean_speed'] }}"></input>
+            <br>
+
+            <label for="points">Points</label>
+            <br>
+            <input type="text" name="points"
+                   placeholder="Message title"
+                   value="{{ request.form['points'] }}"></input>
             <br>
 
             <label for="target_position">Target position</label>

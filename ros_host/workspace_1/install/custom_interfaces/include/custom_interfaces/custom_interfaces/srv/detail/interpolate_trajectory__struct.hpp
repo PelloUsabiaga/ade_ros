@@ -42,12 +42,13 @@ struct InterpolateTrajectory_Request_
       this->target_position = 0.0;
       this->mean_speed = 0.0;
       this->points = 0ll;
+      this->interpolation_type = "";
     }
   }
 
   explicit InterpolateTrajectory_Request_(const ContainerAllocator & _alloc, rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
+  : interpolation_type(_alloc)
   {
-    (void)_alloc;
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
@@ -55,6 +56,7 @@ struct InterpolateTrajectory_Request_
       this->target_position = 0.0;
       this->mean_speed = 0.0;
       this->points = 0ll;
+      this->interpolation_type = "";
     }
   }
 
@@ -71,6 +73,9 @@ struct InterpolateTrajectory_Request_
   using _points_type =
     int64_t;
   _points_type points;
+  using _interpolation_type_type =
+    std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>;
+  _interpolation_type_type interpolation_type;
 
   // setters for named parameter idiom
   Type & set__current_position(
@@ -95,6 +100,12 @@ struct InterpolateTrajectory_Request_
     const int64_t & _arg)
   {
     this->points = _arg;
+    return *this;
+  }
+  Type & set__interpolation_type(
+    const std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>> & _arg)
+  {
+    this->interpolation_type = _arg;
     return *this;
   }
 
@@ -150,6 +161,9 @@ struct InterpolateTrajectory_Request_
       return false;
     }
     if (this->points != other.points) {
+      return false;
+    }
+    if (this->interpolation_type != other.interpolation_type) {
       return false;
     }
     return true;

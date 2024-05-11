@@ -12,6 +12,10 @@
 #include "custom_interfaces/srv/detail/interpolate_trajectory__struct.h"
 
 
+// Include directives for member types
+// Member `interpolation_type`
+#include "rosidl_runtime_c/string_functions.h"
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -31,7 +35,7 @@ void custom_interfaces__srv__InterpolateTrajectory_Request__rosidl_typesupport_i
   custom_interfaces__srv__InterpolateTrajectory_Request__fini(message_memory);
 }
 
-static rosidl_typesupport_introspection_c__MessageMember custom_interfaces__srv__InterpolateTrajectory_Request__rosidl_typesupport_introspection_c__InterpolateTrajectory_Request_message_member_array[4] = {
+static rosidl_typesupport_introspection_c__MessageMember custom_interfaces__srv__InterpolateTrajectory_Request__rosidl_typesupport_introspection_c__InterpolateTrajectory_Request_message_member_array[5] = {
   {
     "current_position",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_DOUBLE,  // type
@@ -99,13 +103,30 @@ static rosidl_typesupport_introspection_c__MessageMember custom_interfaces__srv_
     NULL,  // fetch(index, &value) function pointer
     NULL,  // assign(index, value) function pointer
     NULL  // resize(index) function pointer
+  },
+  {
+    "interpolation_type",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_STRING,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(custom_interfaces__srv__InterpolateTrajectory_Request, interpolation_type),  // bytes offset in struct
+    NULL,  // default value
+    NULL,  // size() function pointer
+    NULL,  // get_const(index) function pointer
+    NULL,  // get(index) function pointer
+    NULL,  // fetch(index, &value) function pointer
+    NULL,  // assign(index, value) function pointer
+    NULL  // resize(index) function pointer
   }
 };
 
 static const rosidl_typesupport_introspection_c__MessageMembers custom_interfaces__srv__InterpolateTrajectory_Request__rosidl_typesupport_introspection_c__InterpolateTrajectory_Request_message_members = {
   "custom_interfaces__srv",  // message namespace
   "InterpolateTrajectory_Request",  // message name
-  4,  // number of fields
+  5,  // number of fields
   sizeof(custom_interfaces__srv__InterpolateTrajectory_Request),
   custom_interfaces__srv__InterpolateTrajectory_Request__rosidl_typesupport_introspection_c__InterpolateTrajectory_Request_message_member_array,  // message members
   custom_interfaces__srv__InterpolateTrajectory_Request__rosidl_typesupport_introspection_c__InterpolateTrajectory_Request_init_function,  // function to initialize message memory (memory has to be allocated)
