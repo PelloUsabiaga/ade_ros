@@ -18,8 +18,6 @@ private:
 
 public:
     interpolate_trajectory_server();
-    void dummy();
-
 };
 
 #endif

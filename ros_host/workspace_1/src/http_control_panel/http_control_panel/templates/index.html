@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %} - FlaskApp</title>
+</head>
+<body>
+    <div>
+        <label>Current position: {{current_position}}</label>
+        <label>Target position: {{target_position}}</label>
+    </div>
+    <div class="content">
+        <form method="post">
+            <label for="title">Title</label>
+            <br>
+            <input type="text" name="title"
+                   placeholder="Message title"
+                   value="{{ request.form['title'] }}"></input>
+            <br>
+
+            <label for="target_position">Target position</label>
+            <br>
+            <input type="text" name="new_target_position"
+                   placeholder="kaixo_lagun"
+                   value="{{ request.form['new_target_position'] }}"></input>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
