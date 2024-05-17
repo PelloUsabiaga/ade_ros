@@ -1,3 +1,0 @@
-int64 position
-int64 speed
-int64 current_position
