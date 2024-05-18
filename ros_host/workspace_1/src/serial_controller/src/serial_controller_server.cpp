@@ -4,8 +4,8 @@
 #include <memory>
 
 
-void serial_controller_server::serial_request_handler(const std::shared_ptr<custom_interfaces::srv::points_to_serial::Request> request,
-          std::shared_ptr<custom_interfaces::srv::points_to_serial::Response> response)
+void serial_controller_server::serial_request_handler(const std::shared_ptr<custom_interfaces::srv::PointsToSerial::Request> request,
+          std::shared_ptr<custom_interfaces::srv::PointsToSerial::Response> response)
 {
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Incoming request");
     int rc = this -> _serial_writer -> write_to_serial(request -> positions, request -> times, request -> n_points);
@@ -23,7 +23,7 @@ void serial_controller_server::serial_request_handler(const std::shared_ptr<cust
 serial_controller_server::Serial_controller_server() : Node("serial_controller_server") {
     this -> _serial_writer = new Serial_writer();
 
-    service_ptr_ = this->create_service<custom_interfaces::srv::points_to_serial>(
+    service_ptr_ = this->create_service<custom_interfaces::srv::PointsToSerial>(
                 "write_serial",
                 std::bind(&Serial_controller_server::serial_request_handler, this, 
 				std::placeholders::_1, std::placeholders::_2)
