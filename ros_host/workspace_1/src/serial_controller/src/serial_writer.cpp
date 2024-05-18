@@ -1,5 +1,6 @@
 #include <stdexcept>
 #include <string>
+#include <iostream>
 #include "serial_writer.h"
 #include <wiringSerial.h>
 
@@ -31,7 +32,7 @@ serial_writer::write_to_serial(std::vector<double> positions, std::vector<double
 
     buffer = buffer.pop_back() + "}";
     buffer = buffer + "{" + std::to_string(n_points) + "}";
-
+    std::cout << buffer << endl;
     //serialFlush(fd); no se si hace falta o va aqui.
     serialPuts(fd, buffer); //este o serialPrintf() ?
     serialClose(fd);
