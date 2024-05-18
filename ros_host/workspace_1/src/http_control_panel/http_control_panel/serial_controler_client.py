@@ -10,7 +10,7 @@ class serial_controller_client(Node):
         super().__init__('serial_controller_client')
         self.cli = self.create_client(PointsToSerial, 'PointsToSerial')
 
-    def send_request(self, positions, times, n_points, max_connect_retries=2):
+    def send_write_request(self, positions, times, n_points, max_connect_retries=2):
         retries = 0
         while not self.cli.wait_for_service(timeout_sec=1.0):
             if retries >= max_connect_retries:

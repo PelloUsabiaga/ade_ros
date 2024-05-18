@@ -5,7 +5,7 @@ import rclpy
 
 
 from ros_controler_node import ros_controler_node
-
+from serial_controler_client import serial_controller_client
 
 class http_control_panel:
 
@@ -22,7 +22,7 @@ class http_control_panel:
     def init_ros(self):
         rclpy.init()
         self.rc_node = ros_controler_node()
-
+        self.serial_node = serial_controller_client()
         self.executor = rclpy.executors.MultiThreadedExecutor()
         self.executor.add_node(self.rc_node)
 
@@ -60,6 +60,7 @@ class http_control_panel:
         int_number = int(number)
 
         result = self.rc_node.send_get_trajectory_request(0, 10, 1, 7)
+        self.serial_node.send_write_request(result.positions, result.times, n_points=30)
         return "Hello world {}, {}".format(result.positions, result.times)
 
     def close(self):
