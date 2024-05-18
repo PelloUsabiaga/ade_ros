@@ -3,9 +3,9 @@
 
 #include <vector>
 
-class Serial_writer{
+class serial_writer{
     public:
-        Serial_writer();
+        serial_writer();
         int write_to_serial(std::vector<double> positions, std::vector<double> times, int points);
 };
 #endif

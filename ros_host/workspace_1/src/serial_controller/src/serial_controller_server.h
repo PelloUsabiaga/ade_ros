@@ -5,12 +5,12 @@
 #include "custom_interfaces/srv/points_to_serial.hpp"
 #include "serial_writer.h"
 
-class Serial_controller_server : public rclpp::Node{
+class serial_controller_server : public rclpp::Node{
     public:
-        Serial_controller_server();
+        serial_controller_server();
 
     private:
-        Serial_writer *_serial_writer;
+        serial_writer *_serial_writer;
 
         rclcpp::Service<custom_interfaces::srv::points_to_serial>::SharedPtr service_ptr_;
 

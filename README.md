@@ -34,3 +34,15 @@ pip3 install flask
 and pip can be installed with
 
 sudo apt install python3-pip
+
+Also to write to serial it's necesary the wiringPi library which can be installed with
+
+git clone https://github.com/WiringPi/WiringPi.git
+
+cd WiringPi
+
+./build debian
+
+mv debian-template/wiringpi_3.4_arm64.deb .
+
+sudo apt install ./wiringpi_3.4_arm64.deb

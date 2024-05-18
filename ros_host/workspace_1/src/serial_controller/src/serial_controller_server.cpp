@@ -4,7 +4,7 @@
 #include <memory>
 
 
-void Serial_controller_server::serial_request_handler(const std::shared_ptr<custom_interfaces::srv::points_to_serial::Request> request,
+void serial_controller_server::serial_request_handler(const std::shared_ptr<custom_interfaces::srv::points_to_serial::Request> request,
           std::shared_ptr<custom_interfaces::srv::points_to_serial::Response> response)
 {
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Incoming request");
@@ -20,7 +20,7 @@ void Serial_controller_server::serial_request_handler(const std::shared_ptr<cust
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Sending back response.");
 }
 
-Serial_controller_server::Serial_controller_server() : Node("serial_controller_server") {
+serial_controller_server::Serial_controller_server() : Node("serial_controller_server") {
     this -> _serial_writer = new Serial_writer();
 
     service_ptr_ = this->create_service<custom_interfaces::srv::points_to_serial>(
