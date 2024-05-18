@@ -6,7 +6,7 @@
 
 serial_writer::serial_writer(){};
 
-serial_writer::write_to_serial(std::vector<double> positions, std::vector<double> times, int n_points){
+int serial_writer::write_to_serial(std::vector<double> positions, std::vector<double> times, int n_points){
     int fd;
     std::string buffer;
 
@@ -34,7 +34,7 @@ serial_writer::write_to_serial(std::vector<double> positions, std::vector<double
     buffer = buffer + "{" + std::to_string(n_points) + "}";
     std::cout << buffer << endl;
     //serialFlush(fd); no se si hace falta o va aqui.
-    serialPuts(fd, buffer); //este o serialPrintf() ?
+    serialPuts(fd, buffer.c_str()); //este o serialPrintf() ?
     serialClose(fd);
     return 0;
 };
