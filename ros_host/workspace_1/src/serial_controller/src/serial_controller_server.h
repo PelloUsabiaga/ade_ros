@@ -2,8 +2,9 @@
 #define SERIAL_CONTROLER_SERVER_H
 
 #include "rclcpp/rclcpp.hpp"
-#include "custom_interfaces/srv/PointsToSerial.hpp"
+
 #include "serial_writer.h"
+#include "custom_interfaces/srv/PointsToSerial.hpp"
 
 class serial_controller_server : public rclpp::Node{
     public:
