@@ -27,7 +27,7 @@ find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "srv/InterpolateTrajectory.srv"
-  "srv/points_to_serial.srv"
+  "srv/PointsToSerial.srv"
  )
 
 
