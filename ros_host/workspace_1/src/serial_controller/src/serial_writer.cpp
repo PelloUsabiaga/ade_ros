@@ -20,19 +20,20 @@ int serial_writer::write_to_serial(std::vector<double> positions, std::vector<do
 
     for(int i=0; i < positions.size(); ++i)
     {
-        if(i==0){buffer += "{"}
+        if(i==0){buffer += "{";}
         buffer += std::to_string(positions[i]) + ",";
     }
-    buffer = buffer.pop_back() + "}";
+    buffer.pop_back();
+    buffer = buffer + "}";
     for(int i=0; i < times.size(); ++i)
     {
-        if(i==0){buffer += "{"}
+        if(i==0){buffer += "{";}
         buffer += std::to_string(times[i]) + ",";
     }
-
-    buffer = buffer.pop_back() + "}";
+    buffer.pop_back();
+    buffer = buffer + "}";
     buffer = buffer + "{" + std::to_string(n_points) + "}";
-    std::cout << buffer << endl;
+    std::cout << buffer << std::endl;
     //serialFlush(fd); no se si hace falta o va aqui.
     serialPuts(fd, buffer.c_str()); //este o serialPrintf() ?
     serialClose(fd);
