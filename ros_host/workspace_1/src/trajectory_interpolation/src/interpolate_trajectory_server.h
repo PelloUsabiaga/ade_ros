@@ -13,7 +13,7 @@ class interpolate_trajectory_server : public rclcpp::Node
 private:
     rclcpp::Service<custom_interfaces::srv::InterpolateTrajectory>::SharedPtr service_ptr_;
 
-    trajectory_interpolator *_trajectory_interpolator;
+    std::shared_ptr<trajectory_interpolator> _trajectory_interpolator;
     void handle_request(const std::shared_ptr<custom_interfaces::srv::InterpolateTrajectory::Request> request, std::shared_ptr<custom_interfaces::srv::InterpolateTrajectory::Response> response);
 
 public:

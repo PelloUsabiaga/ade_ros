@@ -4,19 +4,20 @@
 #include "serial_writer.h"
 #include <wiringSerial.h>
 
-serial_writer::serial_writer(){};
+serial_writer::serial_writer(){
+    if((this->fd=serialOpen("/dev/ttyUSB0",115200))<0){
+        throw std::logic_error("Unable to open serial device.\n");
+    }
+};
 
 int serial_writer::write_to_serial(std::vector<double> positions, std::vector<double> times, int n_points){
-    int fd;
     std::string buffer;
 
     if(positions.size() != times.size())
     {
         throw std::invalid_argument("Invalid 'size' arguments.");
     }
-    if((fd=serialOpen("/dev/ttyACM0",115200))<0){
-        throw std::logic_error("Unable to open serial device.\n");
-    }
+    
 
     for(int i=0; i < positions.size(); ++i)
     {
@@ -32,11 +33,11 @@ int serial_writer::write_to_serial(std::vector<double> positions, std::vector<do
     }
     buffer.pop_back();
     buffer = buffer + "}";
-    buffer = buffer + "{" + std::to_string(n_points) + "}";
+    buffer = buffer + std::to_string(n_points);
     std::cout << buffer << std::endl;
-    //serialFlush(fd); no se si hace falta o va aqui.
-    serialPuts(fd, buffer.c_str()); //este o serialPrintf() ?
-    serialClose(fd);
+    serialPrintf(this->fd, buffer.c_str()); //este o serialPrintf() ?
+    serialFlush(this->fd); 
+
     return 0;
 };
 

@@ -1,0 +1,20 @@
+[patch.crates-io.test_msgs]
+path = "/home/ubuntu/ade_ros/ros_host/workspace_1/install/test_msgs/share/test_msgs/rust"
+
+[patch.crates-io.rosgraph_msgs]
+path = "/home/ubuntu/ade_ros/ros_host/workspace_1/install/rosgraph_msgs/share/rosgraph_msgs/rust"
+
+[patch.crates-io.rcl_interfaces]
+path = "/home/ubuntu/ade_ros/ros_host/workspace_1/install/rcl_interfaces/share/rcl_interfaces/rust"
+
+[patch.crates-io.action_msgs]
+path = "/home/ubuntu/ade_ros/ros_host/workspace_1/install/action_msgs/share/action_msgs/rust"
+
+[patch.crates-io.unique_identifier_msgs]
+path = "/home/ubuntu/ade_ros/ros_host/workspace_1/install/unique_identifier_msgs/share/unique_identifier_msgs/rust"
+
+[patch.crates-io.builtin_interfaces]
+path = "/home/ubuntu/ade_ros/ros_host/workspace_1/install/builtin_interfaces/share/builtin_interfaces/rust"
+
+[patch.crates-io.rosidl_runtime_rs]
+path = "/home/ubuntu/ade_ros/ros_host/workspace_1/install/rosidl_runtime_rs/share/rosidl_runtime_rs/rust"

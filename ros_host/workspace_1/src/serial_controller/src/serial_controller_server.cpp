@@ -20,14 +20,14 @@ void serial_controller_server::serial_request_handler(const std::shared_ptr<cust
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Sending back response.");
 }
 
-serial_controller_server::Serial_controller_server() : Node("serial_controller_server") {
-    this -> _serial_writer = new Serial_writer();
+serial_controller_server::serial_controller_server() : Node("serial_controller_server") {
+	this->_serial_writer = std::make_shared<serial_writer>();
 
     service_ptr_ = this->create_service<custom_interfaces::srv::PointsToSerial>(
                 "write_serial",
-                std::bind(&Serial_controller_server::serial_request_handler, this, 
+                std::bind(&serial_controller_server::serial_request_handler, this, 
 				std::placeholders::_1, std::placeholders::_2)
         );
 
-	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to write to serial.")
+	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to write to serial.");
 }

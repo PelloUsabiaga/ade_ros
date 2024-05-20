@@ -8,7 +8,10 @@ class serial_controller_client(Node):
 
     def __init__(self):
         super().__init__('serial_controller_client')
-        self.cli = self.create_client(PointsToSerial, 'PointsToSerial')
+        self.cli = self.create_client(PointsToSerial, 'write_serial')
+
+        self.req = PointsToSerial.Request()
+
 
     def send_write_request(self, positions, times, n_points, max_connect_retries=2):
         retries = 0
@@ -20,7 +23,7 @@ class serial_controller_client(Node):
         
         self.req.positions = positions
         self.req.times = times
-        self.req.n_points = n_points
+        self.req.n_points = float(n_points)
         
         self.future = self.cli.call_async(self.req)
         rclpy.spin_until_future_complete(self, self.future)

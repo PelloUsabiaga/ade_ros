@@ -49,6 +49,8 @@ class http_control_panel:
             self.trajectory_times = result.times
             self.current_position = new_target_position
 
+            self.serial_node.send_write_request(result.positions, result.times, n_points=30)
+
             return flask.redirect(flask.url_for('index'))
 
         return flask.render_template('index.html', target_position=self.target_position,

@@ -6,7 +6,7 @@ int main(int argc, char **argv)
 {
     rclcpp::init(argc, argv);
 
-    std::shared_ptr<Serial_controller_server> server = std::make_shared<Serial_controller_server>();
+    std::shared_ptr<serial_controller_server> server = std::make_shared<serial_controller_server>();
 
     rclcpp::spin(server);
     rclcpp::shutdown();

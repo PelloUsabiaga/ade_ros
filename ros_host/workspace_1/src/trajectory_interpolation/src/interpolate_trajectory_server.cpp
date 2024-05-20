@@ -36,9 +36,8 @@ void interpolate_trajectory_server::handle_request(const std::shared_ptr<custom_
 
 interpolate_trajectory_server::interpolate_trajectory_server() : Node("interpolate_trajectory_server")
 {
-	this->_trajectory_interpolator = new trajectory_interpolator();
+	this->_trajectory_interpolator = std::make_shared<trajectory_interpolator>();
 
-	
 	
 	service_ptr_ = this->create_service<custom_interfaces::srv::InterpolateTrajectory>(
                 "interpolate_trajectory",

@@ -2,3 +2,7 @@ srv/InterpolateTrajectory.idl
 srv/InterpolateTrajectory.srv
 srv/InterpolateTrajectory_Request.msg
 srv/InterpolateTrajectory_Response.msg
+srv/PointsToSerial.idl
+srv/PointsToSerial.srv
+srv/PointsToSerial_Request.msg
+srv/PointsToSerial_Response.msg
