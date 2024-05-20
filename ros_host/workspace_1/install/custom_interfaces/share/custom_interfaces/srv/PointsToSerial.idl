@@ -1,0 +1,19 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from custom_interfaces/srv/PointsToSerial.srv
+// generated code does not contain a copyright notice
+
+
+module custom_interfaces {
+  module srv {
+    struct PointsToSerial_Request {
+      sequence<double> positions;
+
+      sequence<double> times;
+
+      double n_points;
+    };
+    struct PointsToSerial_Response {
+      string status;
+    };
+  };
+};
