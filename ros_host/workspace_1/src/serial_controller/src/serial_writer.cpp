@@ -3,9 +3,11 @@
 #include <iostream>
 #include "serial_writer.h"
 #include <wiringSerial.h>
+#include <iomanip>
+#include <sstream>
 
 serial_writer::serial_writer(){
-    if((this->fd=serialOpen("/dev/ttyUSB0",115200))<0){
+    if((this->fd=serialOpen("/dev/ttyUSB1",115200))<0){
         throw std::logic_error("Unable to open serial device.\n");
     }
 };
@@ -22,14 +24,20 @@ int serial_writer::write_to_serial(std::vector<double> positions, std::vector<do
     for(int i=0; i < positions.size(); ++i)
     {
         if(i==0){buffer += "{";}
-        buffer += std::to_string(positions[i]) + ",";
+        std::stringstream stream;
+        stream << std::fixed << std::setprecision(2) << positions[i];
+        std::string s = stream.str();
+        buffer += s + ",";
     }
     buffer.pop_back();
     buffer = buffer + "}";
     for(int i=0; i < times.size(); ++i)
     {
         if(i==0){buffer += "{";}
-        buffer += std::to_string(times[i]) + ",";
+        std::stringstream stream;
+        stream << std::fixed << std::setprecision(2) << times[i];
+        std::string s = stream.str();
+        buffer += s + ",";
     }
     buffer.pop_back();
     buffer = buffer + "}";
