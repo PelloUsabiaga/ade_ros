@@ -1,5 +1,4 @@
 import rclpy
-import sys
 
 from custom_interfaces.srv import PointsToSerial
 from rclpy.node import Node

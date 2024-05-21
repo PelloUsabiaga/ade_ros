@@ -1,6 +1,6 @@
+#include "rclcpp/rclcpp.hpp"
 #include <iostream>
 #include "serial_controller_server.h"
-#include "rclcpp/rclcpp.hpp"
 
 int main(int argc, char **argv)
 {
