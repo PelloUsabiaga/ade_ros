@@ -13,6 +13,7 @@ String string_reading;
 void setup() {
   myServo.attach(9);   
   Serial.begin(115200); 
+  Serial.println("Arduino started!");
   angle = 0;
 }
 
@@ -49,7 +50,7 @@ int current_time_length;
 
 void read_times_array(){
   current_time_read_index = 0;
-  incoming_byte = Serial.read(); // for {
+  incoming_byte = Serial.read(); 
 
   float incomming = Serial.parseFloat();
 
@@ -63,7 +64,7 @@ void read_times_array(){
       break;
     }
 
-    incomming = Serial.parseInt();
+    incomming = Serial.parseFloat();
     times_array[current_time_read_index] = incomming;
     current_time_read_index++;
   }
@@ -82,6 +83,7 @@ void loop() {
       read_positions_array();
       read_times_array();
       read_interpolation_data();
+
       
       unsigned long start_time = millis();
 
@@ -89,15 +91,16 @@ void loop() {
       {
         float delta_pos = point_array[i+1] - point_array[i];
         float delta_time = times_array[i+1] - times_array[i];
+
         for(int j = 0; j < interpolation_points; j++){
           float position = point_array[i] + j*(delta_pos)/interpolation_points;
           myServo.write(position);
           delay(delta_time/interpolation_points);
-          //Serial.println(position);
+          Serial.println(position);
         }
       }
       myServo.write(point_array[current_trajectory_length-1]);
-      //Serial.println(point_array[current_trajectory_length-1]); 
+      Serial.println(point_array[current_trajectory_length-1]); 
 
       unsigned long stop_time = millis();
     }  
