@@ -14,7 +14,7 @@ find_package(custom_interfaces REQUIRED)
 # find_package(<dependency> REQUIRED)
 add_executable(serial_controller_server src/main.cpp src/serial_controller_server.cpp src/serial_controller_server.h src/serial_writer.cpp src/serial_writer.h)
 ament_target_dependencies(serial_controller_server rclcpp custom_interfaces)
-target_link_libraries(serial_controller_server ${catkin_LIBRARIES} -l wiringPi)
+target_link_libraries(serial_controller_server ${catkin_LIBRARIES} -lwiringPi)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

@@ -1,3 +1,4 @@
+import os
 import flask
 import threading
 
@@ -33,7 +34,9 @@ class http_control_panel:
 
 
     def create_flask_app(self):
-        app = flask.Flask(__name__)
+        template_dir = os.path.abspath('src/http_control_panel/http_control_panel/templates')
+        print(template_dir)
+        app = flask.Flask(__name__, template_folder=template_dir)
         app.add_url_rule("/", "index", self.index_view, methods=('GET', 'POST'))
         app.add_url_rule("/add/<number>", "/add/<number>", self.number_view)
         return app
