@@ -7,7 +7,6 @@ def generate_launch_description():
 			package='http_control_panel',
 			executable='flask_web_server',
 			name='http'
-<<<<<<< HEAD
 		),
 		Node(
 			package='serial_controller',
@@ -18,8 +17,5 @@ def generate_launch_description():
 			package='trajectory_interpolation',
 			executable='trajectory_interpolation_server',
 			name='interpolation'
-		),
-=======
 		)
->>>>>>> bd9aec4 (launch name changed)
 	])
