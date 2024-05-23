@@ -7,7 +7,7 @@
 
 void interpolate_trajectory_server::handle_request(const std::shared_ptr<custom_interfaces::srv::InterpolateTrajectory::Request> request, std::shared_ptr<custom_interfaces::srv::InterpolateTrajectory::Response> response)
 {
-	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Icoming request\nCurrent position: %ld" "Target position: %ld" "Mean speed: %ld" "Points: %ld", request->current_position, request->target_position, request->mean_speed, request->points);
+	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Icoming request\nCurrent position: %f " "Target position: %f " "Mean speed: %f " "Points: %ld", request->current_position, request->target_position, request->mean_speed, request->points);
 	
 	trajectory_interpolator::interpolation_type _interoplation_type = trajectory_interpolator::interpolation_type::linear;
 	if (request->interpolation_type == "linear")

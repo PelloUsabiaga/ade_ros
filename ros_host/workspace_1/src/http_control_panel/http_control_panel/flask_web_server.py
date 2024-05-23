@@ -17,6 +17,9 @@ class http_control_panel:
 
         self.trajectory_points = []
         self.trajectory_times = []
+
+        self.points = 3
+        self.mean_speed = 0.1
         
         self.init_ros()
 
@@ -44,10 +47,12 @@ class http_control_panel:
     def index_view(self):
         if flask.request.method == 'POST':
             new_target_position = flask.request.form['new_target_position']
-            mean_speed = flask.request.form['mean_speed']
-            points = flask.request.form['points']
+            if ("" != flask.request.form['mean_speed']):
+                self.mean_speed = flask.request.form['mean_speed']
+            if ("" != flask.request.form['points']):
+                self.points = flask.request.form['points']
             self.target_position = new_target_position
-            result = self.rc_node.send_get_trajectory_request(self.current_position, self.target_position, mean_speed, points)
+            result = self.rc_node.send_get_trajectory_request(self.current_position, self.target_position, self.mean_speed, self.points)
             self.trajectory_points = result.positions
             self.trajectory_times = result.times
             self.current_position = new_target_position
@@ -58,7 +63,8 @@ class http_control_panel:
 
         return flask.render_template('index.html', target_position=self.target_position,
                                      current_position=self.target_position, 
-                                     trajectory_points=self.trajectory_points, trajectory_times=self.trajectory_times)
+                                     trajectory_points=self.trajectory_points, trajectory_times=self.trajectory_times,
+                                     default_points=self.points, default_mean_speed=self.mean_speed)
 
 
     def number_view(self, number):

@@ -1,3 +1,5 @@
+msg/PositionMeasurement.idl
+msg/PositionMeasurement.msg
 srv/InterpolateTrajectory.idl
 srv/InterpolateTrajectory.srv
 srv/InterpolateTrajectory_Request.msg
