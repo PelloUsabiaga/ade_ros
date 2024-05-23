@@ -25,6 +25,7 @@ sudo apt install ros-humble-ros-base
 
 ### ROS development tools
 sudo apt install ros-dev-tools
+
 ### ROS2 workspace
 
 There is a ROS2 workspace created, in which for the moment 3 packages will go. By now, there is only test\_package created. It has one node, which by now serves a example Flask app in the host, in port 5000. It is necesary to install flask to run it, install it with
@@ -46,3 +47,21 @@ cd WiringPi
 mv debian-template/wiringpi_3.4_arm64.deb .
 
 sudo apt install ./wiringpi_3.4_arm64.deb
+
+### ROS2 init service configuration
+
+Inside service_files folder there are two files that are required to start our ROS 2 system on boot. Using ros.service file we create a service for systems, that service runs on boot and executes a bash script, which is the script that sources the needed files and launch the ros2 nodes. To configure the service run the following,
+
+sudo touch /etc/systemd/system/ros.service 
+
+and write inside the content we provide, then
+
+sudo touch /usr/local/bin/exec-ros
+
+and do the same,
+
+to change the permissions run sudo chmod 744 /usr/local/bin/exec-ros
+
+and finally to enable the service run
+
+systemctl enable ros

@@ -1,0 +1,14 @@
+#This file should be located on /etc/systemd/system directory.
+[Unit]
+After=network-online.target
+Description=ROS2 init service
+
+[Service]
+Environment="HOME=root"
+ExecStart=/usr/local/bin/exec-ros
+RemainAfterExit=no
+Restart=on-failure
+RestartSec=2s
+
+[Install]
+WantedBy=multi-user.target

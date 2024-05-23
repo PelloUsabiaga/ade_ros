@@ -1,1 +1,1 @@
-/home/ubuntu/ade_ros/ros_host/workspace_1/install/rosidl_default_runtime:/home/ubuntu/ade_ros/ros_host/workspace_1/install/rosidl_default_generators:/opt/ros/humble
+/home/serg/ros/ade_ros/ros_host/workspace_1/install/trajectory_interpolation:/home/serg/ros/ade_ros/ros_host/workspace_1/install/test_package:/home/serg/ros/ade_ros/ros_host/workspace_1/install/serial_controller:/home/serg/ros/ade_ros/ros_host/workspace_1/install/http_control_panel:/home/serg/ros/ade_ros/ros_host/workspace_1/install/custom_interfaces:/opt/ros/humble
