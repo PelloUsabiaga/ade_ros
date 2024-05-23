@@ -1,13 +1,12 @@
 #include <stdexcept>
-#include <string>
-#include <iostream>
 #include "serial_writer.h"
 #include <wiringSerial.h>
 #include <iomanip>
 #include <sstream>
 
-serial_writer::serial_writer(){
-    if((this->fd=serialOpen("/dev/ttyUSB1",115200))<0){
+serial_writer::serial_writer(std::string serial_device){
+    std::cout << serial_device << std::endl;
+    if((this->fd=serialOpen(serial_device.c_str(), 115200))<0){
         throw std::logic_error("Unable to open serial device.\n");
     }
 };

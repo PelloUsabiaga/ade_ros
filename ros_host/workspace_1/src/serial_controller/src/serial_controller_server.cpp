@@ -2,6 +2,7 @@
 #include "serial_controller_server.h"
 #include"serial_writer.h"
 #include <memory>
+#include <string>
 
 
 void serial_controller_server::serial_request_handler(const std::shared_ptr<custom_interfaces::srv::PointsToSerial::Request> request,
@@ -21,7 +22,11 @@ void serial_controller_server::serial_request_handler(const std::shared_ptr<cust
 }
 
 serial_controller_server::serial_controller_server() : Node("serial_controller_server") {
-	this->_serial_writer = std::make_shared<serial_writer>();
+    
+    this->declare_parameter("serial_device", "/dev/ttyUSB0");
+
+    std::string serial_device = this->get_parameter("serial_device").as_string();
+	this->_serial_writer = std::make_shared<serial_writer>(serial_device);
 
     service_ptr_ = this->create_service<custom_interfaces::srv::PointsToSerial>(
                 "write_serial",
