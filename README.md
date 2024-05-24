@@ -1,13 +1,26 @@
 # ade\_ros
 ## ADE Master ROS2
 
-This project intends to test ROS 2 as a software developing tool, whitch was unknown for us before. For that, a simple project in whitch a servomotor is controlled from a web interface have been propoused and developed.
+This project intends to test ROS 2 as a software developing tool, which was unknown for us before. For that, a simple project in which a servomotor is controlled from a web interface has been proposed and developed.
 
-In the picture below it's shown the topology of our system, with the ROS programs in the Raspberry Pi host, and the Arduino microcontroller managing the servomotor. There are three ROS nodes, each one dedicated to one simple task: the flask web server node, the trajectory interpolation node, and the serial controller node. The nodes share data between them using ROS services and topics, like for example a service to request a trajectory generation an get the trajectory as a response, or a topic in whitch the possition of the motor is published. 
+In the picture below it's shown the topology of our system, with the ROS programs in the Raspberry Pi host, and the Arduino microcontroller managing the servomotor. There are three ROS nodes, each one dedicated to one simple task: the flask web server node, the trajectory interpolation node, and the serial controller node. The nodes share data between them using ROS services and topics, like for example a service to request a trajectory generation and get the trajectory as a response, or a topic in which the position of the motor is published. 
 
 <img src="/ros_host/ROS.png" width="500">
 
-The web server is written in Flask, a simple python library to write web applications. It offers a single page, with the operator panel of the motor, and
+The source code for the different nodes can be found in /ade_ros/ros_host/workspace_1/src/, they are organized as ROS packages.
+
+The web server is written in Flask, a simple python library to write web applications. It offers a single page, with the operator panel of the motor as can be seen in the following image:
+
+<img src="ros_host/operator_panel.PNG width="500">
+
+The trajectory interpolator offers a service, which currently only supports linear interpolation. But the infrastructure is ready for other types of interpolation, such as for example cubic.
+
+In the case of the serial controller node, it does two things. It offers a ROS service to write trajectories to the Arduino, which is done following a very simple command structure to pass the points through the serial port. Also, it continuously reads the serial port, so that if the microcontroller notifies a new position, it is published to a ROS topic.
+
+Finally, there is a third ROS package, which contains ROS interfaces for the different services and topic messages.
+
+A demonstration of the project can be found in the following video, in spanish: [youtube_video](https://www.youtube.com/watch?v=i_y66Nou0Ps)
+
 
 The detailed ROS documentation needed to recreate this project is available [HERE](https://docs.ros.org/en/humble/index.html)
 
@@ -44,7 +57,7 @@ You can do it easily using the RPI imager.
 
 ### ROS2 workspace
 
-There is a ROS2 workspace created, in which they are 4 packets. Each packet has one node, except for the packet which has the interfaces. It is necesary to install some libraries to run the packets properly: flask, matplotlib and WiringPi, install them with,
+There is a ROS2 workspace created, in which there are 4 packets. Each packet has one node, except for the packet which has the interfaces. It is necessary to install some libraries to run the packets properly: flask, matplotlib and WiringPi, install them with,
 
 - Install pip if needed
   
@@ -75,7 +88,7 @@ There is a ROS2 workspace created, in which they are 4 packets. Each packet has 
 
 ### ROS2 init service configuration
 
-Inside service_files folder there are two files that are required to start our ROS 2 system on boot. Using ros.service file we create a service for systems, that service runs on boot and executes a bash script, which is the script that sources the needed files and launch the ros2 nodes.
+Inside service_files folder there are two files that are required to start our ROS 2 system on boot. Using ros.service file we create a service for systems, that service runs on boot and executes a bash script, which is the script that sources the needed files and launches the ros2 nodes.
 
 To configure the service run the following,
 
@@ -96,4 +109,7 @@ and finally to enable the service run
 >systemctl enable ros
 
 >[!Note]
-> If you have problems cause not found modules try to install the problematic modules using sudo.
+> If you have problems because you have not found some python modules, try to install the problematic modules using sudo.
+
+
+
