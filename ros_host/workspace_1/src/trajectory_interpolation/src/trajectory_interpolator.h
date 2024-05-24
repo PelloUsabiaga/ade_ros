@@ -4,6 +4,10 @@
 #include <math.h>
 #include <vector>
 
+
+/*
+This class interpolates trajectories for the Node.
+*/
 class trajectory_interpolator
 {
 public:
@@ -13,8 +17,9 @@ public:
 public:
     trajectory_interpolator();
 
-    std::pair<std::vector<double>, std::vector<double>> interpolate_trajectory(double current_position, 
-                double target_position, double mean_speed, int points, interpolation_type interpolation_type);
+    std::pair<std::vector<double>, std::vector<double>> interpolate_trajectory(const double current_position, 
+                                    const double target_position, const double mean_speed, const int points, 
+                                    const interpolation_type interpolation_type);
 
 };
 

@@ -10,8 +10,9 @@ trajectory_interpolator::trajectory_interpolator()
 
 }
 
-std::pair<std::vector<double>, std::vector<double>> trajectory_interpolator::interpolate_trajectory(double current_position, 
-                                    double target_position, double mean_speed, int points, interpolation_type interpolation_type)
+std::pair<std::vector<double>, std::vector<double>> trajectory_interpolator::interpolate_trajectory(const double current_position, 
+                                    const double target_position, const double mean_speed, const int points, 
+                                    const interpolation_type interpolation_type)
 {
     if (interpolation_type == interpolation_type::linear)
     {

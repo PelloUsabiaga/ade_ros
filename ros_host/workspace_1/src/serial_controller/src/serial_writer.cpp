@@ -5,7 +5,7 @@
 #include <sstream>
 #include <chrono>
 
-serial_writer::serial_writer(std::string serial_device, std::function<void(double)> action_on_float_read){
+serial_writer::serial_writer(const std::string serial_device, const std::function<void(const double)> action_on_float_read){
     this->action_on_float_read = action_on_float_read;
     
     std::cout << serial_device << std::endl;
@@ -22,7 +22,7 @@ serial_writer::~serial_writer(){
 }
 
 // The message format has to be the same of the microcontroller.
-int serial_writer::write_to_serial(std::vector<double> positions, std::vector<double> times, int n_points){
+int serial_writer::write_to_serial(const std::vector<double> positions, const std::vector<double> times, const int n_points){
     std::string buffer;
 
     if(positions.size() != times.size())

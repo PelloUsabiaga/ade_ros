@@ -20,11 +20,11 @@ class serial_writer{
         std::thread background_thread;
         std::mutex serial_lock; // Since the serial port is used from different threads, it is necessary to guard it.
 
-        std::function<void(double)> action_on_float_read;
+        std::function<void(const double)> action_on_float_read;
     public:
         // The constructor receives the callback of the position received event, with a simple Observer Pattern.
-        serial_writer(std::string serial_device, std::function<void(double)> action_on_float_read);
+        serial_writer(const std::string serial_device, const std::function<void(const double)> action_on_float_read);
         ~serial_writer();
-        int write_to_serial(std::vector<double> positions, std::vector<double> times, int points);
+        int write_to_serial(const std::vector<double> positions, const std::vector<double> times, const int points);
 };
 #endif

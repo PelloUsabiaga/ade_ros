@@ -24,7 +24,7 @@ void serial_controller_server::serial_request_handler(const std::shared_ptr<cust
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Sending back response.");
 }
 
-void serial_controller_server::motor_position_readed_callback(double position){
+void serial_controller_server::motor_position_readed_callback(const double position){
     auto message = custom_interfaces::msg::PositionMeasurement();
     message.position = position;
 
