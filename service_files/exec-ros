@@ -2,6 +2,6 @@
 echo 'Launching nodes...'
 export ROS_DOMAIN_ID=1
 source /opt/ros/humble/setup.bash
-source /home/serg/ros/ade_ros/ros_host/workspace_1/install/setup.bash
-cd /home/serg/ros/ade_ros/ros_host/workspace_1
+source /home/ubuntu/ade_ros/ros_host/workspace_1/install/setup.bash
+cd /home/ubuntu/ade_ros/ros_host/workspace_1
 ros2 launch launch/start_launch.py

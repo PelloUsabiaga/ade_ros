@@ -81,9 +81,11 @@ class http_control_panel:
     def create_figure(self):
         fig = Figure()
         axis = fig.add_subplot(1, 1, 1)
-        self.time_list.append(time.time())
-        self.position_list.append(self.position_list[-1])
-        axis.plot(self.time_list, self.position_list)
+        time_to_plot = self.time_list
+        time_to_plot.append(time.time())
+        positions_to_plot = self.position_list
+        positions_to_plot.append(self.position_list[-1])
+        axis.plot(time_to_plot, positions_to_plot)
         return fig
     
 
