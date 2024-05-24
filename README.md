@@ -11,7 +11,7 @@ The source code for the different nodes can be found in /ade_ros/ros_host/worksp
 
 The web server is written in Flask, a simple python library to write web applications. It offers a single page, with the operator panel of the motor as can be seen in the following image:
 
-<img src="ros_host/operator_panel.PNG width="500">
+<img src="ros_host/operator_panel.PNG" width="500">
 
 The trajectory interpolator offers a service, which currently only supports linear interpolation. But the infrastructure is ready for other types of interpolation, such as for example cubic.
 
