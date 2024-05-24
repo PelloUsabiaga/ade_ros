@@ -5,11 +5,10 @@ ADE Master ROS2
 ### Install Ubuntu server LTS 20.04.4
 
 ### Ensure that the Ubuntu Universe repository is enabled
-'''console
 sudo apt install software-properties-common
 
 sudo add-apt-repository universe
-'''
+
 
 ### Add the ROS 2 GPG key with apt
 sudo apt update && sudo apt install curl -y
