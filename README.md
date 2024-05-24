@@ -40,25 +40,34 @@ You can do it easily using the RPI imager.
 
 ### ROS2 workspace
 
-There is a ROS2 workspace created, in which for the moment 3 packages will go. By now, there is only test\_package created. It has one node, which by now serves a example Flask app in the host, in port 5000. It is necesary to install flask to run it, install it with
+There is a ROS2 workspace created, in which they are 4 packets. Each packet has one node, except for the packet which has the interfaces. It is necesary to install some libraries to run the packets properly: flask, matplotlib and WiringPi, install them with,
 
->pip3 install flask
+- Install pip if needed
+  
+  >sudo apt install python3-pip
+  
+- Flask
 
-and pip can be installed with
+  >pip3 install flask
 
->sudo apt install python3-pip
+- WiringPi
 
-Also to write to serial it's necesary the wiringPi library which can be installed with
+  >git clone https://github.com/WiringPi/WiringPi.git
 
->git clone https://github.com/WiringPi/WiringPi.git
+  >cd WiringPi
 
->cd WiringPi
+  >./build debian
 
->./build debian
+  >mv debian-template/wiringpi_3.4_arm64.deb .
 
->mv debian-template/wiringpi_3.4_arm64.deb .
+  >sudo apt install ./wiringpi_3.4_arm64.deb
+  
+>[!IMPORTANT]
+>If you have errors with the last commands, probably the version of the library has changed, so you have to look inside debian-template directory to find the correct one. 
 
->sudo apt install ./wiringpi_3.4_arm64.deb
+- Matplotlib
+
+  >pip3 install matplotlib
 
 ### ROS2 init service configuration
 
@@ -83,4 +92,4 @@ and finally to enable the service run
 >systemctl enable ros
 
 >[!Note]
-> If you have problems cause not found modules try to install these modules using sudo.
+> If you have problems cause not found modules try to install the problematic modules using sudo.
