@@ -1,5 +1,7 @@
 # ade\_ros
 ADE Master ROS2
+
+<img src="/pics/ROS.png" width="100">
 ### Install Ubuntu server LTS 20.04.4
 
 ### Ensure that the Ubuntu Universe repository is enabled
