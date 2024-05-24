@@ -9,6 +9,23 @@ void interpolate_trajectory_server::handle_request(const std::shared_ptr<custom_
 {
 	RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Icoming request\nCurrent position: %f " "Target position: %f " "Mean speed: %f " "Points: %ld", request->current_position, request->target_position, request->mean_speed, request->points);
 	
+	if (request->mean_speed == 0.0)
+    {
+		std::vector<double> empty_response { 0 };
+		response->positions = empty_response;
+		response->times = empty_response;
+		RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Mean speed should not be 0.");
+		return;
+    }
+    if (request->points < 2)
+    {
+		std::vector<double> empty_response { 0 };
+		response->positions = empty_response;
+		response->times = empty_response;
+		RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "At least 2 points are required.");
+		return;
+    }
+
 	trajectory_interpolator::interpolation_type _interoplation_type = trajectory_interpolator::interpolation_type::linear;
 	if (request->interpolation_type == "linear")
 	{

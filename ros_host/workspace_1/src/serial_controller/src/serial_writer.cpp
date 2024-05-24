@@ -21,6 +21,7 @@ serial_writer::~serial_writer(){
     this->run_in_background = false;
 }
 
+// The message format has to be the same of the microcontroller.
 int serial_writer::write_to_serial(std::vector<double> positions, std::vector<double> times, int n_points){
     std::string buffer;
 

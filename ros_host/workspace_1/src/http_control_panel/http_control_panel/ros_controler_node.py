@@ -7,7 +7,15 @@ from custom_interfaces.msg import PositionMeasurement
 from rclpy.node import Node
 
 
+"""
+This node is used by the flask web server to consume the ros services and receive 
+the motor position.
+"""
 class ros_controler_node(Node):
+
+    """
+    The callback for the motor position update is passed, implementing a single observer Observer Pattern.
+    """
     def __init__(self, position_received_callback):
         super().__init__("ros_controler_in_http_panel")
         self.position_received_callback = position_received_callback

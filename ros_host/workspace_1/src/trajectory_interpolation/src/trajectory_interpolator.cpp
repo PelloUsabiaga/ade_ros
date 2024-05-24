@@ -13,14 +13,6 @@ trajectory_interpolator::trajectory_interpolator()
 std::pair<std::vector<double>, std::vector<double>> trajectory_interpolator::interpolate_trajectory(double current_position, 
                                     double target_position, double mean_speed, int points, interpolation_type interpolation_type)
 {
-    if (mean_speed == 0.0)
-    {
-        throw std::invalid_argument("Mean speed should not be 0.");
-    }
-    if (points < 2)
-    {
-        throw std::invalid_argument("At least 2 points are required.");
-    }
     if (interpolation_type == interpolation_type::linear)
     {
         std::vector<double> positions(points, 0);;
@@ -42,7 +34,7 @@ std::pair<std::vector<double>, std::vector<double>> trajectory_interpolator::int
         ret_pair.second = times;
         return  ret_pair;
     }
-    else if (interpolation_type == interpolation_type::cubic)
+    else if (interpolation_type == interpolation_type::cubic) // Currently cubic interpolation is not implemented. Return dummy response.
     {
         std::vector<double> positions { 10, 20, 30 };
         std::vector<double> times { 11, 21, 31 };

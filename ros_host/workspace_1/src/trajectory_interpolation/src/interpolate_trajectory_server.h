@@ -7,6 +7,11 @@
 #include "custom_interfaces/srv/interpolate_trajectory.hpp"
 #include <vector>
 
+
+/*
+This node takes care of the service to interpolate trajectories, and enshures that the message content
+is adecuate.
+*/
 class interpolate_trajectory_server : public rclcpp::Node
 {
 

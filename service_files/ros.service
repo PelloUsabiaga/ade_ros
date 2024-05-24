@@ -9,6 +9,7 @@ ExecStart=/usr/local/bin/exec-ros
 RemainAfterExit=no
 Restart=on-failure
 RestartSec=2s
+User=ubuntu
 
 [Install]
 WantedBy=multi-user.target

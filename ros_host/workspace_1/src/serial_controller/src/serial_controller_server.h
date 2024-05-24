@@ -7,6 +7,11 @@
 #include "custom_interfaces/srv/points_to_serial.hpp"
 #include "custom_interfaces/msg/position_measurement.hpp"
 
+
+/*
+This Node provides a service to write trajectories through a serial port, and
+also publishes the possition of the motor to a topic.
+*/  
 class serial_controller_server : public rclcpp::Node{
     public:
         serial_controller_server();

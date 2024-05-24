@@ -14,6 +14,12 @@ from matplotlib.figure import Figure
 from .ros_controler_node import ros_controler_node
 from .serial_controler_client import serial_controller_client
 
+
+"""
+Creates and manages the Flask web server. It creates as a child a ros Node,
+to consume the services of the rest of the Nodes, and it receives the motor 
+possition from the dedicated topic, in order to plot it.
+"""
 class http_control_panel:
 
     def __init__(self):
@@ -28,8 +34,9 @@ class http_control_panel:
         self.mean_speed = 0.1
 
         self.position_list = [0]
-        self.time_list = [time.time()]
-        
+        self.time_list = [0]
+        self.start_time = time.time()
+
         self.init_ros()
 
     def init_ros(self):
@@ -44,9 +51,13 @@ class http_control_panel:
     def position_received_callback(self, position, timestamp):
         print("called!")
         self.position_list.append(position)
-        self.time_list.append(time.time())
+        self.time_list.append(time.time() - self.start_time)
 
 
+    """
+    Instead of the deffault decorator sintax for flask, add_url_rule methods are used, so that
+    the flask app can live inside a class.
+    """
     def create_flask_app(self):
         template_dir = os.path.abspath('src/http_control_panel/http_control_panel/templates')
         app = flask.Flask(__name__, template_folder=template_dir)
@@ -56,18 +67,20 @@ class http_control_panel:
 
     def index_view(self):
         if flask.request.method == 'POST':
-            new_target_position = flask.request.form['new_target_position']
             if ("" != flask.request.form['mean_speed']):
                 self.mean_speed = flask.request.form['mean_speed']
             if ("" != flask.request.form['points']):
                 self.points = flask.request.form['points']
-            self.target_position = new_target_position
-            result = self.rc_node.send_get_trajectory_request(self.current_position, self.target_position, self.mean_speed, self.points)
-            self.trajectory_points = result.positions
-            self.trajectory_times = result.times
-            self.current_position = new_target_position
+            if ("" != flask.request.form['new_target_position']):
+                new_target_position = flask.request.form['new_target_position']
 
-            self.rc_node.send_write_trajectory_request(result.positions, result.times, n_points=30)
+                self.target_position = new_target_position
+                result = self.rc_node.send_get_trajectory_request(self.current_position, self.target_position, self.mean_speed, self.points)
+                self.trajectory_points = result.positions
+                self.trajectory_times = result.times
+                self.current_position = new_target_position
+
+                self.rc_node.send_write_trajectory_request(result.positions, result.times, n_points=30)
 
             return flask.redirect(flask.url_for('index'))
 
@@ -79,12 +92,26 @@ class http_control_panel:
                                      default_points=self.points, default_mean_speed=self.mean_speed)
 
     def create_figure(self):
+        time.time()
+        current_time_from_beguining = time.time() - self.start_time
+        indexes_to_remove = []
+        for i, time_i in enumerate(self.time_list):
+            if (current_time_from_beguining - time_i) > 120:
+                indexes_to_remove.append(i)
+        
+        for index in sorted(indexes_to_remove, reverse=True):
+            del self.time_list[index]
+            del self.position_list[index]
+
         fig = Figure()
         axis = fig.add_subplot(1, 1, 1)
         time_to_plot = self.time_list
-        time_to_plot.append(time.time())
+        time_to_plot.append(time.time() - self.start_time)
         positions_to_plot = self.position_list
-        positions_to_plot.append(self.position_list[-1])
+        if (len(self.position_list) != 0):
+            positions_to_plot.append(self.position_list[-1])
+        else:
+            positions_to_plot.append(0)
         axis.plot(time_to_plot, positions_to_plot)
         return fig
     
@@ -102,6 +129,9 @@ class http_control_panel:
 
 
 
+"""
+Entrypoint of the program.
+"""
 def main():
     print('Hi from http_control_panel.')
     
