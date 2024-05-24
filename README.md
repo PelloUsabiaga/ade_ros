@@ -1,9 +1,13 @@
 # ade\_ros
 ## ADE Master ROS2
 
-In the picture below it's shown the topology of our system, there are three nodes, each one dedicated to one simple task. The nodes share data between them using services and topics like \PositionMeasurement. The purpose of the system is the smooth control of a servo motor, controlling not only the position but also the speed. The Web node creates a Web server that send the user request using HTTP to the node, this data is processed and interpolated and finally sent trought a serial port to an Arduino board. The Arduino board is programmed to parse the data and control the motor using a PWM signal.
+This project intends to test ROS 2 as a software developing tool, whitch was unknown for us before. For that, a simple project in whitch a servomotor is controlled from a web interface have been propoused and developed.
+
+In the picture below it's shown the topology of our system, with the ROS programs in the Raspberry Pi host, and the Arduino microcontroller managing the servomotor. There are three ROS nodes, each one dedicated to one simple task: the flask web server node, the trajectory interpolation node, and the serial controller node. The nodes share data between them using ROS services and topics, like for example a service to request a trajectory generation an get the trajectory as a response, or a topic in whitch the possition of the motor is published. 
 
 <img src="/ros_host/ROS.png" width="500">
+
+The web server is written in Flask, a simple python library to write web applications. It offers a single page, with the operator panel of the motor, and
 
 The detailed ROS documentation needed to recreate this project is available [HERE](https://docs.ros.org/en/humble/index.html)
 
