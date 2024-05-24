@@ -1,7 +1,7 @@
 # ade\_ros
 ## ADE Master ROS2
 
-In the picture below it's shown the topology of our system, there are three nodes, each one dedicated to one simple task. The nodes share data between them using services and topics like \PositionMeasurement. The purpose of the system is the smooth control of a servo motor, controlling not only the position but also the speed. The Web node creates a Web server that send the user request using HTTP to other nodes, this data is processed and interpolated and finally sent trought a serial port to an Arduino board. The Arduino board is programmed to parse the data and control the motor using a PWM signal.
+In the picture below it's shown the topology of our system, there are three nodes, each one dedicated to one simple task. The nodes share data between them using services and topics like \PositionMeasurement. The purpose of the system is the smooth control of a servo motor, controlling not only the position but also the speed. The Web node creates a Web server that send the user request using HTTP to the node, this data is processed and interpolated and finally sent trought a serial port to an Arduino board. The Arduino board is programmed to parse the data and control the motor using a PWM signal.
 
 <img src="/ros_host/ROS.png" width="500">
 
