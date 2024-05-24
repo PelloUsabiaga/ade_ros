@@ -111,5 +111,9 @@ and finally to enable the service run
 >[!Note]
 > If you have problems because you have not found some python modules, try to install the problematic modules using sudo.
 
+### Arduino program
+
+The Arduino program can be found in /arduino_program/servo_simple/servo_simple.ino. It controls the servo with the pin 9.
+
 
 
